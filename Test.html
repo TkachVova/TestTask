@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+</head>
+<body>
+
+ 
+
+<script>
+//Parent class
+//Constructor
+function Animal(name) {
+  this.name = name;
+}
+
+//Parent Methods  
+Animal.prototype.getName= function() {
+  return this.name;
+}
+
+
+
+//child class
+//Constructor
+function Cow(name) {
+  Animal.apply(this, arguments);
+}
+
+//inherit Cow from Animal 
+Cow.prototype = Object.create(Animal.prototype);
+
+
+//Child method
+Cow.prototype.moo = function() { 
+return "Cow " + Animal.prototype.getName.apply(this) + " says moo";
+};
+
+//test1
+var cow = new Cow('Milka');
+alert (cow.getName());
+alert (cow.moo());
+alert (cow instanceof Cow);
+
+//test2
+var cow2 = new Cow("Burenka");
+alert (cow2.getName())
+alert (cow2.moo())
+
+//test3
+alert(cow.getName () === 'Milka');
+alert(cow.moo () === 'Cow Milka says moo');
+
+
+</script>
+
+</body>
+</html>
